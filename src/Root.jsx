@@ -1,29 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components'
-
-
+import styled from 'styled-components';
 
 const Main = () => {
   return (
     <RootComponent>
-    <div className="main-container">
-      <div className="box">
-        <Link to="/food">Food</Link>
+      <div className="main-container">
+        <div className="box">
+          <Link to="/food">Food</Link>
+        </div>
+        <div className="box">
+          <Link to="/movie">Movie</Link>
+        </div>
+        <div className="box">
+          <Link to="/shop">Shop</Link>
+        </div>
+        <div className="box">
+          <Link to="/exchange">Exchange</Link>
+        </div>
       </div>
-      <div className="box">
-        <Link to="/movie">Movie</Link>
-      </div>
-      <div className="box">
-        <Link to="/shop">Shop</Link>
-      </div>
-      <div className="box">
-        <Link to="/exchange">Exchange</Link>
-      </div>
-    </div>
     </RootComponent>
   );
 };
+
+
 
 const RootComponent= styled.div`
 

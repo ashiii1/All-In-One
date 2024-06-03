@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
-import { firebaseAuth } from '../utils/firebase-config';
 import { useNavigate } from 'react-router-dom';
+import { firebaseAuth } from '../utils/firebase-config';
 import BackgroundImage from '../MovieComponents/BackgroundImage';
 import Header from '../MovieComponents/Header';
 
@@ -14,7 +14,7 @@ const LoginPage = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
       if (currentUser) {
-        navigate('/home');
+        navigate('/movie/home'); // Corrected the path to match your route setup
       }
     });
     return () => unsubscribe();
@@ -24,32 +24,32 @@ const LoginPage = () => {
     try {
       await signInWithEmailAndPassword(firebaseAuth, email, password);
     } catch (error) {
-      console.log(error);
+      console.error('Error logging in:', error);
     }
   };
 
   return (
     <Wrapper>
       <BackgroundImage />
-      <div className='loginContent'>
+      <div className="loginContent">
         <Header />
-        <div className='form-wrapper'>
-          <div className='form'>
-            <div className='title'>
+        <div className="form-wrapper">
+          <div className="form">
+            <div className="title">
               <h1>Login</h1>
             </div>
-            <div className='container'>
+            <div className="container">
               <input
-                type='text'
-                placeholder='Email'
-                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                placeholder="Email"
                 value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <input
-                type='password'
-                placeholder='Password'
-                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                placeholder="Password"
                 value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <button onClick={handleLogin}>Login</button>
             </div>
@@ -68,47 +68,52 @@ const Wrapper = styled.div`
     left: 0;
     height: 100vh;
     width: 100vw;
-    grid-template-columns: 15vh 85vh;
+    display: grid;
+    grid-template-columns: 1fr;
     .form-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      height: 100%;
       gap: 2rem;
-      height: 85vh;
     }
     .form {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2rem;
-      background-color: rgba(0, 0, 0, 0.69);
-      height: 50vh;
+      background-color: rgba(0, 0, 0, 0.7);
       padding: 2rem;
+      border-radius: 0.5rem;
       color: white;
-      border-radius: 0.4rem;
+      .title {
+        margin-bottom: 2rem;
+      }
       .container {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
         input {
-          border-radius: 0.4rem;
           padding: 0.5rem 1rem;
-          width: 25rem;
+          border-radius: 0.5rem;
+          border: 1px solid #ccc;
+          width: 20rem;
           outline: none;
         }
         button {
-          padding: 0.5rem;
+          padding: 0.5rem 1rem;
           background-color: #23013f;
-          box-shadow: 0 0 0.2rem white;
-          border: none;
-          cursor: pointer;
-          border-radius: 0.4rem;
-          height: 3.4rem;
           color: white;
-          font-weight: bolder;
-          font-size: 1.05rem;
+          border: none;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 1rem;
+          transition: background-color 0.3s ease;
+          &:hover {
+            background-color: #3b0a54;
+          }
         }
       }
     }
