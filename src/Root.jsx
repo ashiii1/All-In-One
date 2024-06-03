@@ -23,8 +23,6 @@ const Main = () => {
   );
 };
 
-
-
 const RootComponent= styled.div`
 
 
