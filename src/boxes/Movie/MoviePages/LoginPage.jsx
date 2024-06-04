@@ -1,126 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import styled from 'styled-components';
-// import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
-// import { useNavigate } from 'react-router-dom';
-// import { firebaseAuth } from '../utils/firebase-config';
-// import BackgroundImage from '../MovieComponents/BackgroundImage';
-// import Header from '../MovieComponents/Header';
-
-// const LoginPage = () => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
-//       if (currentUser) {
-//         navigate('/movie/home'); // Corrected the path to match your route setup
-//       }
-//     });
-//     return () => unsubscribe();
-//   }, [navigate]);
-
-//   const handleLogin = async () => {
-//     try {
-//       await signInWithEmailAndPassword(firebaseAuth, email, password);
-//     } catch (error) {
-//       console.error('Error logging in:', error);
-//     }
-//   };
-
-//   return (
-//     <Wrapper>
-//       <BackgroundImage />
-//       <div className="loginContent">
-//         <Header />
-//         <div className="form-wrapper">
-//           <div className="form">
-//             <div className="title">
-//               <h1>Login</h1>
-//             </div>
-//             <div className="container">
-//               <input
-//                 type="email"
-//                 placeholder="Email"
-//                 value={email}
-//                 onChange={(e) => setEmail(e.target.value)}
-//               />
-//               <input
-//                 type="password"
-//                 placeholder="Password"
-//                 value={password}
-//                 onChange={(e) => setPassword(e.target.value)}
-//               />
-//               <button onClick={handleLogin}>Login</button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </Wrapper>
-//   );
-// };
-
-// const Wrapper = styled.div`
-//   position: relative;
-//   .loginContent {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     height: 100vh;
-//     width: 100vw;
-//     display: grid;
-//     grid-template-columns: 1fr;
-//     .form-wrapper {
-//       display: flex;
-//       flex-direction: column;
-//       align-items: center;
-//       justify-content: center;
-//       height: 100%;
-//       gap: 2rem;
-//     }
-//     .form {
-//       display: flex;
-//       flex-direction: column;
-//       align-items: center;
-//       justify-content: center;
-//       background-color: rgba(0, 0, 0, 0.7);
-//       padding: 2rem;
-//       border-radius: 0.5rem;
-//       color: white;
-//       .title {
-//         margin-bottom: 2rem;
-//       }
-//       .container {
-//         display: flex;
-//         flex-direction: column;
-//         gap: 1rem;
-//         input {
-//           padding: 0.5rem 1rem;
-//           border-radius: 0.5rem;
-//           border: 1px solid #ccc;
-//           width: 20rem;
-//           outline: none;
-//         }
-//         button {
-//           padding: 0.5rem 1rem;
-//           background-color: #23013f;
-//           color: white;
-//           border: none;
-//           border-radius: 0.5rem;
-//           cursor: pointer;
-//           font-weight: bold;
-//           font-size: 1rem;
-//           transition: background-color 0.3s ease;
-//           &:hover {
-//             background-color: #3b0a54;
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
-
-// export default LoginPage;
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
@@ -128,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { firebaseAuth } from '../utils/firebase-config';
 import BackgroundImage from '../MovieComponents/BackgroundImage';
 import Header from '../MovieComponents/Header';
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -137,7 +15,7 @@ const LoginPage = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
       if (currentUser) {
-        navigate('/movie/home');
+        navigate('/movie/home'); // Corrected the path here
       }
     });
     return () => unsubscribe();
@@ -147,32 +25,32 @@ const LoginPage = () => {
     try {
       await signInWithEmailAndPassword(firebaseAuth, email, password);
     } catch (error) {
-      console.error('Error logging in:', error);
+      console.log(error);
     }
   };
 
   return (
     <Wrapper>
       <BackgroundImage />
-      <div className="loginContent">
+      <div className='loginContent'>
         <Header />
-        <div className="form-wrapper">
-          <div className="form">
-            <div className="title">
+        <div className='form-wrapper'>
+          <div className='form'>
+            <div className='title'>
               <h1>Login</h1>
             </div>
-            <div className="container">
+            <div className='container'>
               <input
-                type="email"
-                placeholder="Email"
-                value={email}
+                type='text'
+                placeholder='Email'
                 onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
               <input
-                type="password"
-                placeholder="Password"
-                value={password}
+                type='password'
+                placeholder='Password'
                 onChange={(e) => setPassword(e.target.value)}
+                value={password}
               />
               <button onClick={handleLogin}>Login</button>
             </div>
@@ -191,52 +69,48 @@ const Wrapper = styled.div`
     left: 0;
     height: 100vh;
     width: 100vw;
-    display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 15vh 85vh;
     .form-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100%;
       gap: 2rem;
+      height: 85vh;
     }
     .form {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-color: rgba(0, 0, 0, 0.7);
+      gap: 2rem;
+      background-color: rgba(0, 0, 0, 0.69);
+      height: 50vh;
       padding: 2rem;
-      border-radius: 0.5rem;
       color: white;
-      .title {
-        margin-bottom: 2rem;
-      }
+      border-radius: 0.4rem;
       .container {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 2rem;
         input {
+          color:black;
+          border-radius: 0.4rem;
           padding: 0.5rem 1rem;
-          border-radius: 0.5rem;
-          border: 1px solid #ccc;
-          width: 20rem;
+          width: 25rem;
           outline: none;
         }
         button {
-          padding: 0.5rem 1rem;
+          padding: 0.5rem;
           background-color: #23013f;
-          color: white;
+          box-shadow: 0 0 0.2rem white;
           border: none;
-          border-radius: 0.5rem;
           cursor: pointer;
-          font-weight: bold;
-          font-size: 1rem;
-          transition: background-color 0.3s ease;
-          &:hover {
-            background-color: #3b0a54;
-          }
+          border-radius: 0.4rem;
+          height: 3.4rem;
+          color: white;
+          font-weight: bolder;
+          font-size: 1.05rem;
         }
       }
     }
