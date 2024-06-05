@@ -15,7 +15,7 @@ const LoginPage = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
       if (currentUser) {
-        navigate('/movie/home'); // Corrected the path here
+        navigate('/movie/home'); 
       }
     });
     return () => unsubscribe();
