@@ -22,4 +22,3 @@ const BackgroundContainer = styled.div`
 
 export default BackgroundImage
 
-// 'https://hips.hearstapps.com/hmg-prod/images/best-spring-movies-1677000068.jpg?resize=1200:*'
